@@ -1,0 +1,39 @@
+<!-- Estendemos do template base -->
+{% extends "layouts/base.html" %}
+
+<!-- Bloco que define o <title></title> da nossa página -->
+{% block title %}TESTE - Home{% endblock %}
+{% load static %}
+
+<!-- Bloco de conteúdo da nossa página -->
+{% block conteudo %}
+<div class="input-group">
+  <div class="col-md-10">
+    <h1>Olá! {{ user.get_full_name }}.</h1>
+  </div>
+  <div class="col-md-2">
+    <span class="input-group-btn">
+      <a class="btn btn-primary" href="{% url 'usuarios:editar' pk=user.id %}" style="margin-top: 20%;"  role="button"><i class="fas fa-user-edit fa-2x"></i></a>
+    </span>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script>
+
+{% for k,v in token.items %}
+
+  var token= '{{v}}'
+
+{% endfor %}
+
+
+window.localStorage.setItem('token', token);
+</script>
+
+{% endblock %}
